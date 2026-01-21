@@ -1,0 +1,42 @@
+# BEV Perception Project Configuration
+
+project_name: "bev-perception-autonomous-driving"
+experiment_name: "baseline-lss"
+
+# Paths
+data_root: "data/nuscenes"
+dataset_version: "v1.0-mini"
+output_dir: "results"
+checkpoint_dir: "checkpoints"
+log_dir: "logs"
+
+# Dataset
+dataset:
+  cameras: 
+    - CAM_FRONT
+    - CAM_FRONT_LEFT
+    - CAM_FRONT_RIGHT
+    - CAM_BACK
+    - CAM_BACK_LEFT
+    - CAM_BACK_RIGHT
+  image_size: [224, 400]  # [H, W] - resized for memory efficiency
+  
+# BEV Grid (in meters)
+bev:
+  x_bound: [-50.0, 50.0, 0.5]  # [min, max, resolution] forward/backward
+  y_bound: [-50.0, 50.0, 0.5]  # left/right
+  z_bound: [-10.0, 10.0, 20.0] # [min, max, num_bins] height
+  d_bound: [4.0, 45.0, 1.0]    # depth range
+
+# Classes (nuScenes 10 classes)
+classes:
+  - car
+  - truck
+  - construction_vehicle
+  - bus
+  - trailer
+  - barrier
+  - motorcycle
+  - bicycle
+  - pedestrian
+  - traffic_cone
