@@ -56,3 +56,8 @@ results/videos/*
 # OS
 .DS_Store
 Thumbs.db
+
+# Installers
+*.sh
+Miniconda*.sh
+environment_*.yml  # Keep only main environment.yml

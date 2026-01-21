@@ -1,0 +1,50 @@
+name: bev-perception
+channels:
+  - pytorch
+  - conda-forge
+  - defaults
+
+dependencies:
+  # Core Python
+  - python=3.9
+  
+  # PyTorch (CPU version)
+  - pytorch::pytorch=2.0.1
+  - pytorch::torchvision=0.15.2
+  - pytorch::cpuonly
+  
+  # Scientific Computing
+  - numpy=1.26
+  - scipy=1.11
+  
+  # Visualization (CRITICAL: <3.6 for nuScenes)
+  - matplotlib=3.5.3
+  
+  # Basic utilities from conda
+  - pyyaml=6.0
+  - tqdm=4.65
+  
+  # pip packages
+  - pip
+  - pip:
+      # Computer Vision
+      - opencv-python==4.8.0.76
+      - pillow==10.0.0
+      
+      # nuScenes (CRITICAL: requires matplotlib<3.6, shapely<2.0)
+      - nuscenes-devkit==1.1.11
+      
+      # Deep Learning utilities
+      - albumentations==1.3.1
+      - timm==0.9.12
+      - einops==0.7.0
+      
+      # Geometry (CRITICAL: <2.0 for nuScenes)
+      - pyquaternion==0.9.9
+      - shapely==1.8.5
+      
+      # Logging & Metrics
+      - tensorboard==2.15.1
+      - scikit-learn==1.3.2
+      - pandas==2.1.4
+      - motmetrics==1.4.0
