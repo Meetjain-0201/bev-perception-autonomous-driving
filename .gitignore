@@ -20,7 +20,7 @@ wheels/
 .installed.cfg
 *.egg
 
-# Jupyter Notebooks
+# Jupyter Notebooks checkpoints
 .ipynb_checkpoints
 *.ipynb_checkpoints/
 
@@ -40,18 +40,18 @@ venv.bak/
 *.swo
 *~
 
-# Data & Models
+# Data (keep images, ignore dataset)
 data/nuscenes/
+!data/README.md
+
+# Models (ignore large checkpoints)
 checkpoints/*.pth
 checkpoints/*.ckpt
-logs/
-*.log
+logs/*.log
 
-# Results (keep structure, ignore content)
-results/images/*
-!results/images/.gitkeep
-results/videos/*
-!results/videos/.gitkeep
+# Keep results/images - REMOVE THIS EXCLUSION
+# results/images/*
+# !results/images/.gitkeep
 
 # OS
 .DS_Store
@@ -60,4 +60,4 @@ Thumbs.db
 # Installers
 *.sh
 Miniconda*.sh
-environment_*.yml  # Keep only main environment.yml
+environment_*.yml
