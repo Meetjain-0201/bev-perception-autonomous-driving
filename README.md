@@ -378,36 +378,6 @@ bev_features = model(
 
 ---
 
-## 🎯 Project Impact
-
-### Skills Demonstrated
-
-**Computer Vision:**
-- ✅ Multi-view geometry
-- ✅ Camera calibration
-- ✅ Homography transformations
-- ✅ 3D-2D projections
-
-**Deep Learning:**
-- ✅ CNN architectures (ResNet50)
-- ✅ Custom network design
-- ✅ Multi-task learning
-- ✅ Voxel-based representations
-
-**Autonomous Driving:**
-- ✅ BEV perception systems
-- ✅ Sensor fusion
-- ✅ 3D object detection
-- ✅ Real-world dataset (nuScenes)
-
-**Software Engineering:**
-- ✅ Modular code architecture
-- ✅ Version control (Git)
-- ✅ Documentation
-- ✅ Reproducible research
-
----
-
 ## 📊 Quantitative Results
 
 ### Dataset Processing
@@ -430,91 +400,7 @@ bev_features = model(
 
 ---
 
-## 🏆 Project Achievements
 
-### Technical Milestones
-- ✅ Implemented 2 BEV transformation methods from scratch
-- ✅ Built complete neural perception pipeline (15.67M params)
-- ✅ Processed nuScenes dataset (404 samples, 74 objects/sample)
-- ✅ Created modular, production-quality codebase
-- ✅ Comprehensive visualization and analysis
-
-### Research Understanding
-- ✅ Reproduced LSS paper (ECCV 2020)
-- ✅ Understood geometric vs learned approaches
-- ✅ Identified failure modes and limitations
-- ✅ Compared methods quantitatively
-
-### Engineering Quality
-- ✅ Clean code structure
-- ✅ Documented with notebooks
-- ✅ Version controlled (Git)
-- ✅ Reproducible results
-- ✅ CPU-optimized for accessibility
-
----
-
-## 💼 Interview Preparation
-
-### Project Walkthrough (2-min pitch)
-
-*"I built an end-to-end BEV perception system comparing classical and neural approaches for autonomous driving."*
-
-**Technical depth:**
-- Implemented classical IPM using homography - achieved 66% coverage but fails on 3D objects
-- Built neural LSS with ResNet50 backbone, categorical depth prediction, and voxel pooling - achieved 100% coverage
-- Complete detection pipeline with 15.67M parameters
-- Processed nuScenes dataset - 74 objects per sample across 10 classes
-
-**Key insight:**
-- IPM assumes flat ground (Z=0) → vertical objects get stretched
-- LSS learns depth → handles arbitrary 3D structure
-- This demonstrates why autonomous driving moved from geometric to learned methods
-
----
-
-### Deep Technical Questions
-
-**Q: Explain voxel pooling in detail**
-
-*"Voxel pooling is the 'Splat' step in LSS:*
-
-1. *For each image pixel, we have a depth distribution (112 bins)*
-2. *This creates a frustum - a cone of probable 3D locations*
-3. *We discretize 3D space into voxels (0.5m cubes)*
-4. *For each voxel, we accumulate features from all pixels that might project there, weighted by depth probability*
-5. *Repeat for all 6 cameras - features naturally fuse in 3D space*
-6. *Finally, collapse the height dimension to get BEV*
-
-*This is more robust than single-depth estimation and naturally handles uncertainty."*
-
----
-
-**Q: Why categorical depth instead of regression?**
-
-*"Categorical depth (predicting distribution over bins) is more robust:*
-- *Handles multimodal depth (e.g., two cars at different depths)*
-- *Provides uncertainty estimation*
-- *More stable gradients during training*
-- *Used in production systems (Tesla, Waymo)*
-
-*I implemented 112 bins from 4-45m, learned via cross-entropy loss."*
-
----
-
-**Q: How do you handle coordinate transformations?**
-
-*"There are three coordinate frames:*
-- *Global: World coordinates*
-- *Ego: Vehicle-centered*
-- *Camera: Each camera's local frame*
-
-*Transformations use 4×4 matrices (rotation + translation):*
-- *Camera → Ego: From calibrated_sensor*
-- *Ego → Global: From ego_pose*
-- *I use quaternions for rotations and homogeneous coordinates for clean matrix math."*
-
----
 
 ## 🔧 Installation & Usage
 
@@ -588,35 +474,6 @@ bev-perception-autonomous-driving/
 
 ---
 
-## 🎓 What I Learned
-
-### 1. Why BEV Matters
-Understanding that BEV is the industry standard because:
-- Metric space (planning needs real distances)
-- No scale ambiguity
-- Natural multi-sensor fusion
-- Tesla, Waymo, all major AV companies use it
-
-### 2. Geometric vs Learned Methods
-IPM taught me:
-- Classical CV still valuable (fast, interpretable)
-- Understanding failures → motivation for neural methods
-- Trade-offs: speed vs accuracy
-
-LSS taught me:
-- How modern AV perception works
-- Importance of depth prediction
-- 3D reasoning in neural networks
-- Production ML architecture design
-
-### 3. Real-World ML Engineering
-- Dataset quirks (class name formats)
-- Coordinate frame hell (3 different systems!)
-- Memory constraints (CPU training)
-- Modular design for debugging
-
----
-
 ## 📚 References & Learning Resources
 
 ### Papers Implemented
@@ -637,23 +494,6 @@ LSS taught me:
 - BEV Perception Survey (Springer 2023)
 - Multi-View Geometry (Hartley & Zisserman)
 
----
-
-## 🚀 Next Steps (Future Extensions)
-
-### If Continuing Project:
-- [ ] Full training on GPU (requires compute resources)
-- [ ] Temporal fusion (use video sequences, not just keyframes)
-- [ ] Integrate ground truth for quantitative evaluation
-- [ ] Add NMS (Non-Maximum Suppression) post-processing
-- [ ] ROS2 integration for deployment
-- [ ] Benchmark against published baselines
-
-### Alternative Projects (Related):
-- 3D Occupancy Networks (Tesla's approach)
-- Gaussian Splatting for scene reconstruction
-- Multi-modal fusion (Camera + LiDAR)
-- End-to-end planning with BEV
 
 ---
 
