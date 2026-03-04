@@ -10,3 +10,4 @@ train_log.txt
 results/videos/
 !results/images/
 checkpoints/
+checkpoints/
