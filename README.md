@@ -17,7 +17,7 @@ The output is a side-by-side video: front camera | IPM road texture | ground tru
 
 ## Results
 
-![Demo Preview](results/images/demo_preview.png)
+![BEV Demo](results/images/demo_preview.gif)
 
 **Training on nuScenes Mini (323 samples, 30 epochs, RTX 5060 8GB)**
 
