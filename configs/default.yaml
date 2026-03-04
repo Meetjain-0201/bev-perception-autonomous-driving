@@ -1,0 +1,84 @@
+# ============================================================
+# BEV Perception — Default Config
+# ============================================================
+
+data:
+  dataroot: "data/nuscenes"
+  version: "v1.0-mini"
+  img_h: 224
+  img_w: 400
+
+ipm:
+  # BEV grid in ego frame (meters)
+  x_min: -15.0      # lateral left
+  x_max:  15.0      # lateral right
+  y_min:   2.0      # forward near
+  y_max:  35.0      # forward far
+  bev_h: 330        # pixels (y_max - y_min) * 10
+  bev_w: 300        # pixels (x_max - x_min) * 10
+
+lss:
+  # Depth bins
+  d_min: 4.0
+  d_max: 45.0
+  d_steps: 41
+
+  # BEV voxel grid
+  bev_x_min: -50.0
+  bev_x_max:  50.0
+  bev_y_min: -50.0
+  bev_y_max:  50.0
+  bev_z_min: -10.0
+  bev_z_max:  10.0
+  bev_res: 0.5       # meters per cell -> 200x200 grid
+  bev_z_bins: 20
+
+  # Model channels
+  neck_out: 512
+  bev_channels: 64
+
+train:
+  batch_size: 2
+  num_workers: 2
+  epochs: 30
+  lr: 2.0e-4
+  weight_decay: 1.0e-4
+  checkpoint_dir: "checkpoints"
+  results_dir: "results"
+
+classes:
+  names:
+    - car
+    - truck
+    - construction_vehicle
+    - bus
+    - trailer
+    - barrier
+    - motorcycle
+    - bicycle
+    - pedestrian
+    - traffic_cone
+  num: 10
+
+  # nuScenes raw name -> our class name
+  mapping:
+    vehicle.car: car
+    vehicle.truck: truck
+    vehicle.construction: construction_vehicle
+    vehicle.bus.bendy: bus
+    vehicle.bus.rigid: bus
+    vehicle.trailer: trailer
+    movable_object.barrier: barrier
+    vehicle.motorcycle: motorcycle
+    vehicle.bicycle: bicycle
+    human.pedestrian.adult: pedestrian
+    human.pedestrian.child: pedestrian
+    human.pedestrian.wheelchair: pedestrian
+    human.pedestrian.stroller: pedestrian
+    human.pedestrian.personal_mobility: pedestrian
+    human.pedestrian.police_officer: pedestrian
+    human.pedestrian.construction_worker: pedestrian
+    movable_object.trafficcone: traffic_cone
+    movable_object.pushable_pullable: barrier
+    movable_object.debris: barrier
+    static_object.bicycle_rack: barrier
